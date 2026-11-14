@@ -14,7 +14,7 @@ class CourseController extends Controller
             $query->where('name', 'like', "%{$search}%");
         })
         ->latest()
-        ->paginate(10)
+        ->paginate(5)
         ->withQueryString();
 
         return view('courses.index', compact('courses'));
