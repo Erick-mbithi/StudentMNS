@@ -39,6 +39,10 @@ class SemesterController extends Controller
         return redirect()->route('semesters.index')
             ->with('success', 'Semester created successfully.');
     }
+    public function feeStructures()
+{
+    return $this->hasMany(FeeStructure::class);
+}
 
     public function show(Semester $semester)
     {
@@ -70,11 +74,18 @@ class SemesterController extends Controller
             ->with('success', 'Semester updated successfully.');
     }
 
-    public function destroy(Semester $semester)
-    {
-        $semester->delete();
-
+    
+public function destroy(Semester $semester)
+{
+    if ($semester->feeStructures()->exists()) {
         return redirect()->route('semesters.index')
-            ->with('success', 'Semester deleted successfully.');
+            ->with('error', 'This semester cannot be deleted because it has fee structures attached.');
     }
+
+    $semester->delete();
+
+    return redirect()->route('semesters.index')
+        ->with('success', 'Semester deleted successfully.');
+}
+
 }
