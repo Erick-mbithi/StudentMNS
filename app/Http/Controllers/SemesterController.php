@@ -31,7 +31,7 @@ class SemesterController extends Controller
             'name' => 'required|string|max:255',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
-            'status' => 'required|in:Active,Inactive',
+            'status' => 'required|in:0,1',
         ]);
 
         Semester::create($validated);
@@ -39,10 +39,6 @@ class SemesterController extends Controller
         return redirect()->route('semesters.index')
             ->with('success', 'Semester created successfully.');
     }
-    public function feeStructures()
-{
-    return $this->hasMany(FeeStructure::class);
-}
 
     public function show(Semester $semester)
     {
@@ -65,7 +61,7 @@ class SemesterController extends Controller
             'name' => 'required|string|max:255',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
-            'status' => 'required|in:Active,Inactive',
+            'status' => 'required|in:0,1',
         ]);
 
         $semester->update($validated);
@@ -74,18 +70,16 @@ class SemesterController extends Controller
             ->with('success', 'Semester updated successfully.');
     }
 
-    
-public function destroy(Semester $semester)
-{
-    if ($semester->feeStructures()->exists()) {
+    public function destroy(Semester $semester)
+    {
+        if ($semester->feeStructures()->exists()) {
+            return redirect()->route('semesters.index')
+                ->with('error', 'This semester cannot be deleted because it has fee structures attached.');
+        }
+
+        $semester->delete();
+
         return redirect()->route('semesters.index')
-            ->with('error', 'This semester cannot be deleted because it has fee structures attached.');
+            ->with('success', 'Semester deleted successfully.');
     }
-
-    $semester->delete();
-
-    return redirect()->route('semesters.index')
-        ->with('success', 'Semester deleted successfully.');
-}
-
 }

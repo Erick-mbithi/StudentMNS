@@ -1,22 +1,40 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Student;
+use App\Models\Course;
+use App\Models\Payment;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $totalStudents = 120;
-        $totalCourses = 8;
-        $totalTeachers = 15;
-        $totalDepartments = 5;
+        // Student and course statistics
+        $totalStudents = Student::count();
+        $totalCourses = Course::count();
+
+        // Modules not yet created
+        $totalTeachers = 0;
+        $totalDepartments = 0;
+
+        // Payment statistics
+        $totalPayments = Payment::where('status', 'completed')
+            ->sum('amount');
+
+        $totalPaymentRecords = Payment::count();
+
+        $pendingPayments = Payment::where('status', 'pending')
+            ->count();
 
         return view('dashboard', compact(
             'totalStudents',
             'totalCourses',
             'totalTeachers',
-            'totalDepartments'
+            'totalDepartments',
+            'totalPayments',
+            'totalPaymentRecords',
+            'pendingPayments'
         ));
     }
 }

@@ -85,14 +85,23 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Status</label>
+               <div class="col-md-6 mb-3">
+    <label class="form-label">Status</label>
 
-                        <select name="status" class="form-select">
-                            <option value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
-                        </select>
-                    </div>
+    <select name="status" class="form-select" required>
+        <option value="1" {{ old('status', '1') == '1' ? 'selected' : '' }}>
+            Active
+        </option>
+
+        <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>
+            Inactive
+        </option>
+    </select>
+
+    @error('status')
+        <div class="text-danger small">{{ $message }}</div>
+    @enderror
+</div>
 
                 </div>
 

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Semester extends Model
 {
@@ -17,10 +19,16 @@ class Semester extends Model
     protected $casts = [
         'start_date' => 'date',
         'end_date' => 'date',
+        'status' => 'boolean',
     ];
 
-    public function academicYear()
+    public function academicYear(): BelongsTo
     {
         return $this->belongsTo(AcademicYear::class);
+    }
+
+    public function feeStructures(): HasMany
+    {
+        return $this->hasMany(FeeStructure::class);
     }
 }

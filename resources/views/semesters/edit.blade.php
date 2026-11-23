@@ -72,14 +72,23 @@
                             value="{{ old('end_date', $semester->end_date->format('Y-m-d')) }}">
                     </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Status</label>
+             <div class="col-md-6 mb-3">
+    <label class="form-label">Status</label>
 
-                        <select name="status" class="form-select">
-                            <option value="Active" {{ old('status', $semester->status) == 'Active' ? 'selected' : '' }}>Active</option>
-                            <option value="Inactive" {{ old('status', $semester->status) == 'Inactive' ? 'selected' : '' }}>Inactive</option>
-                        </select>
-                    </div>
+    <select name="status" class="form-select" required>
+        <option value="1" {{ old('status', $semester->status) == '1' ? 'selected' : '' }}>
+            Active
+        </option>
+
+        <option value="0" {{ old('status', $semester->status) == '0' ? 'selected' : '' }}>
+            Inactive
+        </option>
+    </select>
+
+    @error('status')
+        <div class="text-danger small">{{ $message }}</div>
+    @enderror
+</div>
 
                 </div>
 

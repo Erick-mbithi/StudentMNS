@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm school-navbar">
 
     <div class="container-fluid">
@@ -13,18 +14,32 @@
 
         </button>
 
+        {{-- Application Branding --}}
+        <div class="d-flex align-items-center">
 
-        {{-- Application Name --}}
-        <span class="navbar-brand mb-0 h1">
-            Student Management System
-        </span>
+            <div class="me-2 text-primary">
+                <i class="bi bi-mortarboard-fill fs-4"></i>
+            </div>
 
+            <div>
+                <span class="navbar-brand mb-0 fw-bold">
+                    USHINDI COLLEGE
+                </span>
+
+                <small class="text-muted d-none d-md-block">
+                    College Management System
+                </small>
+            </div>
+
+        </div>
 
         {{-- Right Side --}}
         <div class="ms-auto d-flex align-items-center">
 
             {{-- Notifications --}}
-          <button class="btn btn-light me-2 position-relative school-icon-btn">
+            <button class="btn btn-light me-2 position-relative school-icon-btn"
+                    type="button"
+                    aria-label="Notifications">
 
                 <i class="bi bi-bell"></i>
 
@@ -33,7 +48,6 @@
                 </span>
 
             </button>
-
 
             {{-- User --}}
             @auth
@@ -53,45 +67,31 @@
 
                     </button>
 
-
-                    <ul class="dropdown-menu dropdown-menu-end">
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm">
 
                         <li>
-
                             <a class="dropdown-item" href="#">
-
                                 <i class="bi bi-person me-2"></i>
-
                                 Profile
-
                             </a>
-
                         </li>
-
 
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
-
                         <li>
-
-                            <form method="POST"
-                                  action="{{ route('logout') }}">
-
+                            <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <button type="submit"
-                                        class="dropdown-item">
+                                <button type="submit" class="dropdown-item text-danger">
 
                                     <i class="bi bi-box-arrow-right me-2"></i>
-
                                     Logout
 
                                 </button>
 
                             </form>
-
                         </li>
 
                     </ul>

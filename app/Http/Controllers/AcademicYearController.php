@@ -25,7 +25,7 @@ class AcademicYearController extends Controller
             'name' => 'required|string|max:255|unique:academic_years,name',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
-            'status' => 'required|in:Active,Inactive',
+            'status' => 'required|in:0,1',
         ]);
 
         AcademicYear::create($validated);
@@ -50,7 +50,7 @@ class AcademicYearController extends Controller
             'name' => 'required|string|max:255|unique:academic_years,name,' . $academicYear->id,
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
-            'status' => 'required|in:Active,Inactive',
+            'status' => 'required|in:0,1',
         ]);
 
         $academicYear->update($validated);

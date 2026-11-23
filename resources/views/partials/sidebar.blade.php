@@ -1,3 +1,4 @@
+
 <div class="col-lg-2 school-sidebar p-0">
 
     <div class="offcanvas-lg offcanvas-start"
@@ -12,7 +13,7 @@
                 id="sidebarLabel">
 
                 <i class="bi bi-mortarboard-fill me-2"></i>
-                Student System
+                USHINDI COLLEGE
 
             </h5>
 
@@ -29,7 +30,6 @@
 
         </div>
 
-
         {{-- Sidebar Body --}}
         <div class="offcanvas-body d-flex flex-column p-3">
 
@@ -37,135 +37,104 @@
             <h4 class="d-none d-lg-block fw-bold text-white">
 
                 <i class="bi bi-mortarboard-fill me-2"></i>
-                Student System
+                USHINDI COLLEGE
 
             </h4>
 
-            <hr class="d-none d-lg-block">
+            <small class="d-none d-lg-block text-white-50 mb-3">
+                College Management System
+            </small>
 
+            <hr class="d-none d-lg-block">
 
             {{-- Navigation --}}
             <ul class="nav nav-pills flex-column sidebar-nav">
 
                 {{-- Dashboard --}}
                 <li class="nav-item">
-
                     <a href="{{ route('dashboard') }}"
-                       class="nav-link">
-
+                       class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                         <i class="bi bi-speedometer2 me-2"></i>
-
                         Dashboard
-
                     </a>
-
                 </li>
 
                 {{-- Students --}}
-<li class="nav-item">
-
-    <a href="{{ route('students.index') }}"
-       class="nav-link {{ request()->routeIs('students.*') ? 'active' : '' }}">
-
-        <i class="bi bi-people me-2"></i>
-
-        Students
-
-    </a>
-
-</li>
-
-                </li>
-                
-                   {{-- Enrollments --}}
-               <li class="nav-item">
-    <a href="{{ route('enrollments.index') }}" class="nav-link">
-        <i class="bi bi-journal-check"></i>
-        <span>Enrollments</span>
-    </a>
-</li>
-
+                <li class="nav-item">
+                    <a href="{{ route('students.index') }}"
+                       class="nav-link {{ request()->routeIs('students.*') ? 'active' : '' }}">
+                        <i class="bi bi-people me-2"></i>
+                        Students
+                    </a>
                 </li>
 
-          {{-- Fees --}}    
-<li class="nav-item">
-    <a href="{{ route('fee-structures.index') }}" class="nav-link">
-        <i class="bi bi-cash-stack"></i>
-        <span>Fee Structures</span>
-    </a>
-</li>
-  
+                {{-- Enrollments --}}
+                <li class="nav-item">
+                    <a href="{{ route('enrollments.index') }}"
+                       class="nav-link {{ request()->routeIs('enrollments.*') ? 'active' : '' }}">
+                        <i class="bi bi-journal-check me-2"></i>
+                        Enrollments
+                    </a>
+                </li>
+
+                {{-- Fee Structures --}}
+                <li class="nav-item">
+                    <a href="{{ route('fee-structures.index') }}"
+                       class="nav-link {{ request()->routeIs('fee-structures.*') ? 'active' : '' }}">
+                        <i class="bi bi-cash-stack me-2"></i>
+                        Fee Structures
+                    </a>
+                </li>
 
                 {{-- Courses --}}
-<li class="nav-item">
-    <a href="{{ route('courses.index') }}" class="nav-link">
-        <i class="bi bi-book"></i>
-        <span>Courses</span>
-    </a>
-</li>
+                <li class="nav-item">
+                    <a href="{{ route('courses.index') }}"
+                       class="nav-link {{ request()->routeIs('courses.*') ? 'active' : '' }}">
+                        <i class="bi bi-book me-2"></i>
+                        Courses
+                    </a>
+                </li>
 
                 {{-- Payments --}}
                 <li class="nav-item">
+                    <a href="{{ route('payments.index') }}"
+   class="nav-link {{ request()->routeIs('payments.*') ? 'active' : '' }}">
 
-                    <a href="#"
-                       class="nav-link">
+    <i class="bi bi-wallet2 me-2"></i>
+    <span>Payments</span>
 
-                        <i class="bi bi-credit-card me-2"></i>
-
-                        Payments
-
-                    </a>
-
+</a>
                 </li>
 
-
+                {{-- Academic Years --}}
                 <li class="nav-item">
-    <a href="{{ route('academic-years.index') }}"
-       class="nav-link {{ request()->routeIs('academic-years.*') ? 'active' : '' }}">
-        <i class="bi bi-calendar3 me-2"></i>
-        <span>Academic Years</span>
-    </a>
-</li>
+                    <a href="{{ route('academic-years.index') }}"
+                       class="nav-link {{ request()->routeIs('academic-years.*') ? 'active' : '' }}">
+                        <i class="bi bi-calendar3 me-2"></i>
+                        Academic Years
+                    </a>
+                </li>
 
-
-<li class="nav-item">
-    <a href="{{ route('semesters.index') }}"
-       class="nav-link {{ request()->routeIs('semesters.*') ? 'active' : '' }}">
-        <i class="bi bi-calendar-range me-2"></i>
-        <span>Semesters</span>
-    </a>
-</li>
-
+                {{-- Semesters --}}
+                <li class="nav-item">
+                    <a href="{{ route('semesters.index') }}"
+                       class="nav-link {{ request()->routeIs('semesters.*') ? 'active' : '' }}">
+                        <i class="bi bi-calendar-range me-2"></i>
+                        Semesters
+                    </a>
+                </li>
 
                 {{-- Reports --}}
                 <li class="nav-item">
+    <a href="{{ route('profile.edit') }}"
+       class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
 
-                    <a href="#"
-                       class="nav-link">
+        <i class="bi bi-person-circle me-2"></i>
+        My Profile
 
-                        <i class="bi bi-bar-chart me-2"></i>
-
-                        Reports
-
-                    </a>
-
-                </li>
-
-
-                {{-- Profile --}}
-                <li class="nav-item">
-
-                    <a href="#"
-                       class="nav-link">
-
-                        <i class="bi bi-person-circle me-2"></i>
-
-                        Profile
-
-                    </a>
-
-                </li>
-
+    </a>
+</li>
+              
             </ul>
 
         </div>
