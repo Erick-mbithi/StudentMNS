@@ -106,6 +106,9 @@
 </a>
                 </li>
 
+
+                
+
                 {{-- Academic Years --}}
                 <li class="nav-item">
                     <a href="{{ route('academic-years.index') }}"
@@ -123,6 +126,14 @@
                         Semesters
                     </a>
                 </li>
+
+                <li class="nav-item">
+    <a href="{{ route('reports.index') }}"
+       class="nav-link {{ request()->routeIs('reports.*') ? 'active' : '' }}">
+        <i class="bi bi-file-earmark-bar-graph me-2"></i>
+        Reports
+    </a>
+</li>
 
                 {{-- Reports --}}
                 <li class="nav-item">

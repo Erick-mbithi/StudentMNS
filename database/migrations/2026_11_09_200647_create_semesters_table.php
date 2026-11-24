@@ -6,27 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
-public function up(): void
-{
-    Schema::create('semesters', function (Blueprint $table) {
-        $table->id();
+    public function up(): void
+    {
+        if (!Schema::hasTable('semesters')) {
+            Schema::create('semesters', function (Blueprint $table) {
+                $table->id();
 
-        $table->foreignId('academic_year_id')
-              ->constrained('academic_years')
-              ->cascadeOnDelete();
+                $table->foreignId('academic_year_id')
+                      ->constrained('academic_years')
+                      ->cascadeOnDelete();
 
-        $table->string('name');
-        $table->date('start_date');
-        $table->date('end_date');
+                $table->string('name');
+                $table->date('start_date');
+                $table->date('end_date');
 
-        $table->enum('status', ['Active', 'Inactive'])
-              ->default('Active');
+                $table->enum('status', ['Active', 'Inactive'])
+                      ->default('Active');
 
-        $table->timestamps();
-    });
-}
-
+                $table->timestamps();
+            });
+        }
+    }
 
     public function down(): void
     {
