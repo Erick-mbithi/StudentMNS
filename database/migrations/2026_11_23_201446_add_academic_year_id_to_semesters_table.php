@@ -8,19 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('semesters', function (Blueprint $table) {
-            $table->foreignId('academic_year_id')
-                ->nullable()
-                ->constrained('academic_years')
-                ->restrictOnDelete();
-        });
+        if (!Schema::hasColumn('semesters', 'academic_year_id')) {
+            Schema::table('semesters', function (Blueprint $table) {
+                $table->foreignId('academic_year_id')
+                    ->nullable()
+                    ->constrained('academic_years')
+                    ->restrictOnDelete();
+            });
+        }
     }
 
     public function down(): void
     {
-        Schema::table('semesters', function (Blueprint $table) {
-            $table->dropForeign(['academic_year_id']);
-            $table->dropColumn('academic_year_id');
-        });
+        // Intentionally left empty to avoid removing
+        // an academic_year_id column already in use.
     }
 };
